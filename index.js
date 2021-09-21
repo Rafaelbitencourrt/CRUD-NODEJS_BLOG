@@ -1,8 +1,7 @@
 const express = require("express");
-const { Sequelize } = require("sequelize/types");
 const app = express();
-const PORT = 3000;
 const connection = require("./database/database");
+const PORT = 3000;
 
 //VIEW ENGINE
 app.set("view engine", "ejs");
