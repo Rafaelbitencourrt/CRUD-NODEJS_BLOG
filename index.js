@@ -21,10 +21,10 @@ app.use(express.static("public"));
 connection
   .authenticate()
   .then(() => {
-    console.log("Banco de dados conectado com sucesso!");
+    console.log("Conexão feita com o banco de dados!");
   })
-  .catch((error) => {
-    console.log("não conectado", error);
+  .catch((msgErro) => {
+    console.log(msgErro);
   });
 
 app.get("/", (req, res) => {
