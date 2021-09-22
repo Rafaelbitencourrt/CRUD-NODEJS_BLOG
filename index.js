@@ -2,8 +2,9 @@ const express = require("express");
 const app = express();
 const connection = require("./database/database");
 const PORT = 3000;
-const articlesController = require('./articles/articlesController');
-const categoriasController = require('./categories/categoriesController')
+const articlesController = require("./articles/ArticlesController");
+const categoriasController = require("./categories/CategoriesController");
+const category = require("./categories/categories");
 
 //VIEW ENGINE
 app.set("view engine", "ejs");
@@ -34,8 +35,8 @@ app.get("/", (req, res) => {
 
 ////ROUTER
 
-app.use('/', articlesController);
-app.use('/catega', categoriasController);
+app.use("/", articlesController);
+app.use("/catega", categoriasController);
 
 app.listen(PORT, () => {
   console.log("servidor rodando");
