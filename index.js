@@ -4,7 +4,9 @@ const connection = require("./database/database");
 const PORT = 3000;
 const articlesController = require("./articles/ArticlesController");
 const categoriasController = require("./categories/CategoriesController");
-const category = require("./categories/categories");
+
+const Article = require("./articles/Article");
+const Category = require("./categories/categories");
 
 //VIEW ENGINE
 app.set("view engine", "ejs");
