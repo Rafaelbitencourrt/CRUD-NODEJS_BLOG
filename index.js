@@ -38,7 +38,7 @@ app.get("/", (req, res) => {
 ////ROUTER
 
 app.use("/", articlesController);
-app.use("/catega", categoriasController);
+app.use("/", categoriasController);
 
 app.listen(PORT, () => {
   console.log("servidor rodando");
