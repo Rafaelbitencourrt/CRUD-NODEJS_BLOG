@@ -22,7 +22,34 @@ router.post("/categories/save", (req, res) => {
 });
 
 router.get("/admin/categories", (req, res) => {
-  res.render("admin/categories/index");
+  //listando todas categorias
+  Category.findAll().then((categories) => {
+    res.render("admin/categories/index", { categories: categories });
+  });
 });
+
+//deletando categoria
+router.post("/categories/delete", (req, res) => {
+  var id = req.body.id;
+  if (id != undefined) {
+    if (!isNaN(id)) {
+      Category.destroy({
+        where: {
+          id: id,
+        },
+      }).then(() => {
+        res.redirect("/admin/categories");
+      });
+    } else {
+      // NÃO FOR NUMERO
+      res.redirect("/admin/categories");
+    }
+  } else {
+    //NULL
+    res.redirect("/admin/categories");
+  }
+});
+
+router.post;
 
 module.exports = router;
