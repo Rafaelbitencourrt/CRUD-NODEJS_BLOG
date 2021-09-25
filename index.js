@@ -17,7 +17,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //STATIC
-
 app.use(express.static("public"));
 
 //DATABASE
