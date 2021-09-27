@@ -1,13 +1,12 @@
-
-
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-router.get('/artigos', (req, res)=>{
-    res.send('Rota para artigos')
-})
-router.get('/admin/artigos', (req, res)=>{
-    res.send('Rota para artigos do admin')
-})
+router.get("/articles", (req, res) => {
+  res.send("Rota para artigos do admin");
+});
 
-module.exports = router
+router.get("/admin/articles/new", (req, res) => {
+  res.render("admin/articles/new");
+});
+
+module.exports = router;

@@ -3,7 +3,7 @@ const app = express();
 const connection = require("./database/database");
 const PORT = 3000;
 const articlesController = require("./articles/ArticlesController");
-const categoriasController = require("./categories/CategoriesController");
+const categoriesController = require("./categories/CategoriesController");
 
 const Article = require("./articles/Article");
 const Category = require("./categories/categories");
@@ -37,7 +37,7 @@ app.get("/", (req, res) => {
 ////ROUTER
 
 app.use("/", articlesController);
-app.use("/", categoriasController);
+app.use("/", categoriesController);
 
 app.listen(PORT, () => {
   console.log("servidor rodando");
