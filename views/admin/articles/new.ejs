@@ -24,6 +24,13 @@ include('../../partials/navbar.ejs') %>
             placeholder="Escreva seu artigo!"
           ></textarea>
           <br />
+          <label> Categorias</label>
+          <select name="category" class="form-control" id="">
+            <% categories.forEach((category) =>{%>
+            <option value="<%= category.id %> "><%= category.title %></option>
+            <% }) %>
+          </select>
+          <br />
           <button class="btn btn-success">Cadastrar</button>
         </form>
       </div>
@@ -36,8 +43,9 @@ include('../../partials/navbar.ejs') %>
 <script src="/tinymce/tinymce.min.js"></script>
 <script>
   tinymce.init({
+    language: "pt_BR",
     selector: "#article",
-    pugind: [
+    plugins: [
       "advlist autolink link image lists preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons",
     ],
   });
