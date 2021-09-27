@@ -17,12 +17,20 @@ include('../../partials/navbar.ejs') %>
         <th>Ações</th>
       </tr>
     </thead>
-    <tbody></tbody>
+    <tbody>
+      <% articles.forEach((article =>{ %>
+      <td><%= article.id %></td>
+      <td><%= article.title %></td>
+      <td><%= article.slug %></td>
+      <td><%= article.categoriaId %></td>
+      <td>Ações</td>
+      <% })) %>
+    </tbody>
   </table>
 </div>
 
 <%- include ('../../partials/footer.ejs'); %>
-<script>
+<!-- <script>
   function confirmarDelete(event, form) {
     event.preventDefault();
     var decision = confirm("Você gostaria de deletar esta categoria?");
@@ -30,4 +38,4 @@ include('../../partials/navbar.ejs') %>
       form.submit();
     }
   }
-</script>
+</script> -->
