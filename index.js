@@ -6,7 +6,7 @@ const articlesController = require("./articles/ArticlesController");
 const categoriesController = require("./categories/CategoriesController");
 
 const Article = require("./articles/Article");
-const Category = require("./categories/categories");
+const Category = require("./categories/Category");
 
 //VIEW ENGINE
 app.set("view engine", "ejs");
@@ -26,8 +26,8 @@ connection
   .then(() => {
     console.log("Conexão feita com o banco de dados!");
   })
-  .catch((msgErro) => {
-    console.log(msgErro);
+  .catch((error) => {
+    console.log(error);
   });
 
 app.get("/", (req, res) => {

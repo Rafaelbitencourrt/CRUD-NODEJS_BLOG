@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Category = require("./Categories");
+const Category = require("./Category");
 const slugify = require("slugify");
 const { application } = require("express");
 
@@ -70,7 +70,5 @@ router.get("/admin/categories/edit/:id", (req, res) => {
       res.redirect("/admin/categories");
     });
 });
-
-router.post;
 
 module.exports = router;
