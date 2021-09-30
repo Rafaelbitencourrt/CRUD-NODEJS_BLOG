@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Category = require("../categories/Category");
-const Article = require("../articles/Article");
+const Article = require("./Article");
 const slugify = require("slugify");
 
 //ROTA PRINCIPAL
@@ -15,8 +15,8 @@ router.get("/admin/articles", (req, res) => {
 
 //CRIANDO ARTIGO
 router.get("/admin/articles/new", (req, res) => {
-  Category.findAll().then(() => {
-    res.render("admin/articles/new", {});
+  Category.findAll().then((categories) => {
+    res.render("admin/articles/new", { categories: categories });
   });
 });
 
@@ -30,7 +30,7 @@ router.post("/articles/save", (req, res) => {
     title: title,
     slug: slugify(title),
     body: body,
-    categoriaId: category,
+    categoryId: category,
   }).then(() => {
     res.redirect("/admin/articles");
   });

@@ -8,7 +8,7 @@ include('../../partials/navbar.ejs') %>
 
       <hr />
       <div class="card-body">
-        <form method="POST" action="/categories/save">
+        <form method="POST" action="/articles/save">
           <input
             class="form-control"
             type="text"
@@ -21,7 +21,15 @@ include('../../partials/navbar.ejs') %>
             class="form-control"
             placeholder="Escreva seu artigo"
             name="body"
+            id="article"
           ></textarea>
+          <br />
+          <label>Categorias</label>
+          <select name="category" class="form-control">
+            <% categories.forEach((category) =>{%>
+            <option value="<%= category.id %> "><%= category.title %></option>
+            <% }) %>
+          </select>
           <br />
           <button class="btn btn-success">Cadastrar</button>
         </form>
@@ -31,3 +39,14 @@ include('../../partials/navbar.ejs') %>
 </body>
 
 <%- include ('../../partials/footer.ejs'); %>
+
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+  tinymce.init({
+    language: "pt_BR",
+    selector: "#article",
+    plugins: [
+      "advlist autolink link image lista print preview hr searchreplace wordcount fullscreen inserdatetime media save table paste emoticons",
+    ],
+  });
+</script>
