@@ -22,7 +22,17 @@ include('../../partials/navbar.ejs') %>
       <td><%= article.title%></td>
       <td><%= article.slug%></td>
       <td><%= article.category.title%></td>
-      <td>Ações</td>
+      <td>
+        <form
+          method="POST"
+          action="/articles/delete"
+          style="display: inline"
+          onsubmit="confirmarDelete(event, this)"
+        >
+          <input type="hidden" name="id" value="<%= article.id %>" />
+          <button class="btn btn-danger">Deletar</button>
+        </form>
+      </td>
 
       <% }) %>
     </tbody>
@@ -33,7 +43,7 @@ include('../../partials/navbar.ejs') %>
 <script>
   function confirmarDelete(event, form) {
     event.preventDefault();
-    var decision = confirm("Você gostaria de deletar esta categoria?");
+    var decision = confirm("Você gostaria de deletar este artigo?");
     if (decision) {
       form.submit();
     }
