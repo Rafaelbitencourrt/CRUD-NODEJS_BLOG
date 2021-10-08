@@ -4,19 +4,32 @@ include('../../partials/navbar.ejs') %>
   <div class="container">
     <hr />
     <div class="card">
-      <div class="card-header"><h2>Edição de artigos</h2></div>
+      <div class="card-header"><h2>Editar artigo</h2></div>
 
       <hr />
       <div class="card-body">
-        <form method="POST" action="/articles/update">
+        <form method="POST" action="/articles/save">
           <input
             class="form-control"
             type="text"
             name="title"
-            placeholder="Defina o titulo da categoria"
-            value="<%= article.title %>"
+            placeholder="Defina o título do artigo"
+            id=""
           />
-          <input type="hidden" name="id" value="<%= article.id %> " />
+          <br />
+          <textarea
+            class="form-control"
+            placeholder="Escreva seu artigo"
+            name="body"
+            id="article"
+          ></textarea>
+          <br />
+          <label>Categorias</label>
+          <select name="category" class="form-control">
+            <% categories.forEach((category) =>{%>
+            <option value="<%= category.id %> "><%= category.title %></option>
+            <% }) %>
+          </select>
           <br />
           <button class="btn btn-success">Atualizar</button>
         </form>
@@ -26,3 +39,14 @@ include('../../partials/navbar.ejs') %>
 </body>
 
 <%- include ('../../partials/footer.ejs'); %>
+
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+  tinymce.init({
+    language: "pt_BR",
+    selector: "#article",
+    plugins: [
+      "advlist autolink link image lista print preview hr searchreplace wordcount fullscreen inserdatetime media save table paste emoticons",
+    ],
+  });
+</script>

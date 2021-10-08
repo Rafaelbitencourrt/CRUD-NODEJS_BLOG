@@ -67,7 +67,9 @@ router.get("/admin/articles/edit/:id", (req, res) => {
   Article.findByPk(id) //pesquisa categoria pelo id
     .then((article) => {
       if (article != undefined) {
-        res.render("admin/articles/edit", { article: article });
+        Category.findAll().then((categories) => {
+          res.render("admin/articles/edit", { categories: categories });
+        });
       } else {
         res.redirect("/admin/articles");
       }
