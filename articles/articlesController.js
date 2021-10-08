@@ -61,14 +61,14 @@ router.post("/articles/delete", (req, res) => {
 //EDITANDO ARQUIVO
 router.get("/admin/articles/edit/:id", (req, res) => {
   var id = req.params.id;
-  if (isNaN(id)) {
-    res.redirect("/admin/articles");
-  }
   Article.findByPk(id) //pesquisa categoria pelo id
     .then((article) => {
       if (article != undefined) {
         Category.findAll().then((categories) => {
-          res.render("admin/articles/edit", { categories: categories });
+          res.render("admin/articles/edit", {
+            categories: categories,
+            article: article,
+          });
         });
       } else {
         res.redirect("/admin/articles");
