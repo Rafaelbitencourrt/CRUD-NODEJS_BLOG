@@ -27,9 +27,15 @@ include('../../partials/navbar.ejs') %>
           <br />
           <label>Categorias</label>
           <select name="category" class="form-control">
-            <% categories.forEach((category) =>{%>
+            <!-- //droppdown dinamico -->
+            <% categories.forEach((category) =>{%> <% if(category.id ==
+            article.categoryId) { %>
+            <option value="<%= category.id %> " selected>
+              <%= category.title %>
+            </option>
+            <% } else {%>
             <option value="<%= category.id %> "><%= category.title %></option>
-            <% }) %>
+            <%}%> <% }) %>
           </select>
           <br />
           <button class="btn btn-success">Atualizar</button>
