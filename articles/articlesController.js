@@ -130,13 +130,11 @@ router.get("/articles/page/:num", (req, res) => {
     };
 
     Category.findAll().then((categories) => {
-      res.render("admin/articles", {
+      res.render("admin/articles/page", {
         result: result,
         categories: categories,
       });
     });
-
-    res.json(result);
   });
 });
 module.exports = router;

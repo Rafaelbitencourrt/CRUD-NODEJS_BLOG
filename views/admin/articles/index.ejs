@@ -19,9 +19,9 @@ include('../../partials/navbar.ejs') %>
       <% articles.forEach(article=>{ %>
       <tr>
         <td><%= article.id %></td>
-        <td><%= article.title%></td>
-        <td><%= article.slug%></td>
-        <td><%= article.category.title%></td>
+        <td><%= article.title %></td>
+        <td><%= article.slug %></td>
+        <td><%= article.category.title %></td>
         <td>
           <form
             method="POST"
@@ -34,7 +34,6 @@ include('../../partials/navbar.ejs') %>
           </form>
         </td>
       </tr>
-
       <% }) %>
     </tbody>
   </table>
