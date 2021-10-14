@@ -116,6 +116,7 @@ router.get("/articles/page/:num", (req, res) => {
   Article.findAndCountAll({
     limit: 4,
     offset: offset,
+    order: [["id", "DESC"]],
   }).then((articles) => {
     var next;
     if (offset + 4 >= articles.count) {
