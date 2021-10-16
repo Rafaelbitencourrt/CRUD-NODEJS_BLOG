@@ -4,7 +4,7 @@ const connection = require("./database/database");
 const PORT = 3000;
 const articlesController = require("./articles/ArticlesController");
 const categoriesController = require("./categories/CategoriesController");
-
+const UserController = require("./users/UserController");
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
 
@@ -91,6 +91,7 @@ app.get("/category/:slug", (req, res) => {
 
 app.use("/", articlesController);
 app.use("/", categoriesController);
+app.use("/", UserController);
 
 app.listen(PORT, () => {
   console.log("servidor rodando");
