@@ -5,10 +5,11 @@ const PORT = 3000;
 
 const articlesController = require("./articles/ArticlesController");
 const categoriesController = require("./categories/CategoriesController");
-const userController = require("./users/UserController");
+const userController = require("./users/UsersController");
 
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
+const User = require("./users/User");
 
 //VIEW ENGINE
 app.set("view engine", "ejs");

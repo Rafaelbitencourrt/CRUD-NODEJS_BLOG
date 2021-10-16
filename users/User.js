@@ -13,5 +13,5 @@ const User = connection.define("users", {
 });
 
 //ATUALIZANDO O BANCO DE DADOS
-//Category.sync({ force: true });
+//User.sync({ force: true });
 module.exports = User;
