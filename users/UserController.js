@@ -7,7 +7,7 @@ router.get("/admin/users", (req, res) => {
 });
 
 router.get("/admin/users/create", (req, res) => {
-  res.render("/admin/users/create");
+  res.render("admin/users/create");
 });
 
 module.exports = router;
