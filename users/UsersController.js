@@ -34,7 +34,7 @@ router.post("/users/create", (req, res) => {
           res.redirect("/");
         });
     } else {
-      res.redirect("admin/user/create");
+      res.redirect("admin/users/create");
     }
   });
 
