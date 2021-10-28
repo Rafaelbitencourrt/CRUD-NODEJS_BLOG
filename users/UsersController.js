@@ -37,20 +37,28 @@ router.post("/users/create", (req, res) => {
       res.redirect("admin/users/create");
     }
   });
+});
 
-  var salt = bcrypt.genSaltSync(10);
-  var hash = bcrypt.hashSync(password, salt);
-
-  User.create({
-    email: email,
-    password: hash,
-  })
-    .then(() => {
-      res.redirect("/");
-    })
-    .catch((err) => {
-      res.redirect("/");
-    });
+//DELETANDO USUARIO
+router.post("/users/delete", (req, res) => {
+  var id = req.body.id;
+  if (id != undefined) {
+    if (!isNaN(id)) {
+      User.destroy({
+        where: {
+          id: id,
+        },
+      }).then(() => {
+        res.redirect("/admin/users");
+      });
+    } else {
+      // NÃO FOR NUMERO
+      res.redirect("/admin/users");
+    }
+  } else {
+    //NULL
+    res.redirect("/admin/users");
+  }
 });
 
 module.exports = router;
