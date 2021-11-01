@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const connection = require("./database/database");
 const PORT = 3000;
+const Session = require("session");
 
 const articlesController = require("./articles/ArticlesController");
 const categoriesController = require("./categories/CategoriesController");
@@ -10,6 +11,10 @@ const userController = require("./users/UsersController");
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
 const User = require("./users/User");
+
+//SESSION
+
+app.use("session({})");
 
 //VIEW ENGINE
 app.set("view engine", "ejs");
