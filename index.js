@@ -32,6 +32,26 @@ app.use(express.json());
 //STATIC
 app.use(express.static("public"));
 
+////ROTA SESSION
+app.get("/session", (req, res) => {
+  req.session.treinamento = "Formação Node";
+  req.session.ano = 2019;
+  req.session.user = {
+    usename: "RAFAEL",
+    email: "rafaelbitencourtn12@gmail.com",
+    id: 2,
+  };
+  res.send("sessao gerada!");
+});
+
+app.get("/leitura", (req, res) => {
+  res.json({
+    treinamento: req.session.treinamento,
+    ano: req.session.ano,
+    user: req.session.user,
+  });
+});
+
 //DATABASE
 
 connection
