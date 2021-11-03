@@ -9,6 +9,12 @@ router.get("/admin/users", (req, res) => {
   });
 });
 
+////LOGIN
+
+router.get("/admin/login", (req, res) => {
+  res.render("admin/users/login");
+});
+
 router.get("/admin/users/create", (req, res) => {
   res.render("admin/users/create");
 });
