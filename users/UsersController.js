@@ -9,12 +9,6 @@ router.get("/admin/users", (req, res) => {
   });
 });
 
-////LOGIN
-
-router.get("/admin/login", (req, res) => {
-  res.render("admin/users/login");
-});
-
 router.get("/admin/users/create", (req, res) => {
   res.render("admin/users/create");
 });
@@ -65,6 +59,37 @@ router.post("/users/delete", (req, res) => {
     //NULL
     res.redirect("/admin/users");
   }
+});
+
+//----------------->LOGIN<------------------//
+
+router.get("/admin/login", (req, res) => {
+  res.render("admin/users/login");
+});
+
+//--------------------->AUTENTICAÇÃO<---------------//
+
+router.post("/authenticate", (req, res) => {
+  var email = req.body.email;
+  var password = req.body.password;
+
+  User.findOne({ where: { email: email } }).then((user) => {
+    if (user != undefined) {
+      var correct = bcrypt.compareSync(password, user.password);
+
+      if (correct) {
+        req.session.user = {
+          id: user.id,
+          email: user.email,
+        };
+        res.json(req.session.user);
+      } else {
+        res.redirect("/admin/login");
+      }
+    } else {
+      res.redirect("/admin/login");
+    }
+  });
 });
 
 module.exports = router;
