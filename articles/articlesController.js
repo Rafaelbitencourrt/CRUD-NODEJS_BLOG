@@ -10,7 +10,7 @@ const autheticateUser = require("../middlewares/authenticateUser");
 //ROTA PRINCIPAL
 router.get("/admin/articles", autheticateUser, (req, res) => {
   Article.findAll({
-    include: [{ model: Category }],
+    include: [{ model: Category, required: true }],
   }).then((articles) => {
     res.render("admin/articles/index", { articles: articles });
   });
