@@ -3,13 +3,14 @@ const router = express.Router();
 const Category = require("./Category");
 const slugify = require("slugify");
 const { application } = require("express");
+const authenticateUser = require("../middlewares/authenticateUser");
 
 router.get("/admin/categories/new", (req, res) => {
   res.render("admin/categories/new");
 });
 
 //CRIANDO UMA NOVA CATEGORIA E SALVANDO NO BANCO DE DADOS
-router.post("/categories/save", (req, res) => {
+router.post("/categories/save", authenticateUser, (req, res) => {
   var title = req.body.title;
   if (title != undefined) {
     Category.create({
@@ -23,7 +24,7 @@ router.post("/categories/save", (req, res) => {
   }
 });
 
-router.get("/admin/categories", (req, res) => {
+router.get("/admin/categories", authenticateUser, (req, res) => {
   //lISTANDO TODAS CATEGORIAS
   Category.findAll().then((categories) => {
     res.render("admin/categories/index", { categories: categories });
@@ -31,7 +32,7 @@ router.get("/admin/categories", (req, res) => {
 });
 
 //DELETANDO CATEGORIA
-router.post("/categories/delete", (req, res) => {
+router.post("/categories/delete", authenticateUser, (req, res) => {
   var id = req.body.id;
   if (id != undefined) {
     if (!isNaN(id)) {
@@ -53,7 +54,7 @@ router.post("/categories/delete", (req, res) => {
 });
 
 //EDITANDO ARQUIVO
-router.get("/admin/categories/edit/:id", (req, res) => {
+router.get("/admin/categories/edit/:id", authenticateUser, (req, res) => {
   var id = req.params.id;
   if (isNaN(id)) {
     res.redirect("/admin/categories");
@@ -72,7 +73,7 @@ router.get("/admin/categories/edit/:id", (req, res) => {
 });
 
 ///SALVANDO EDIÇÃO DATABASE
-router.post("/categories/update", (req, res) => {
+router.post("/categories/update", authenticateUser, (req, res) => {
   var id = req.body.id;
   var title = req.body.title;
 

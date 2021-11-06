@@ -3,10 +3,12 @@ const router = express.Router();
 const Category = require("../categories/Category");
 const Article = require("./Article");
 const slugify = require("slugify");
+const authenticateUser = require("../middlewares/authenticateUser");
 const { Router } = require("express");
+const autheticateUser = require("../middlewares/authenticateUser");
 
 //ROTA PRINCIPAL
-router.get("/admin/articles", (req, res) => {
+router.get("/admin/articles", autheticateUser, (req, res) => {
   Article.findAll({
     include: [{ model: Category }],
   }).then((articles) => {
@@ -15,14 +17,14 @@ router.get("/admin/articles", (req, res) => {
 });
 
 //CRIANDO ARTIGO
-router.get("/admin/articles/new", (req, res) => {
+router.get("/admin/articles/new", autheticateUser, (req, res) => {
   Category.findAll().then((categories) => {
     res.render("admin/articles/new", { categories: categories });
   });
 });
 
 //SALVANDO ARTIGO NO DANCO DE DADOS
-router.post("/articles/save", (req, res) => {
+router.post("/articles/save", autheticateUser, (req, res) => {
   var title = req.body.title;
   var body = req.body.body;
   var category = req.body.category;
@@ -38,7 +40,7 @@ router.post("/articles/save", (req, res) => {
 });
 
 //DELETANDO ARTIGO
-router.post("/articles/delete", (req, res) => {
+router.post("/articles/delete", autheticateUser, (req, res) => {
   var id = req.body.id;
   if (id != undefined) {
     if (!isNaN(id)) {
@@ -60,7 +62,7 @@ router.post("/articles/delete", (req, res) => {
 });
 
 //EDITANDO ARQUIVO
-router.get("/admin/articles/edit/:id", (req, res) => {
+router.get("/admin/articles/edit/:id", autheticateUser, (req, res) => {
   var id = req.params.id;
   Article.findByPk(id) //pesquisa categoria pelo id
     .then((article) => {
@@ -81,7 +83,7 @@ router.get("/admin/articles/edit/:id", (req, res) => {
 });
 
 ///SALVANDO EDIÇÃO DATABASE
-router.post("/articles/update", (req, res) => {
+router.post("/articles/update", autheticateUser, (req, res) => {
   var id = req.body.id;
   var title = req.body.title;
   var body = req.body.body;
