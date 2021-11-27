@@ -31,7 +31,7 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 
 ```bash
 # Clone este repositório
-$ git clone <https://github.com/tgmarinho/nlw1>
+$ git clone <https://github.com/Rafaelbitencourrt/CRUD-NODEJS_BLOG>
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd CRUD_NODEJS_BLOG
