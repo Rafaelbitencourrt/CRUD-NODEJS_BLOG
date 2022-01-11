@@ -127,13 +127,15 @@ app.use("/", articlesController);
 app.use("/", categoriesController);
 app.use("/", userController);
 
-/* app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log("servidor rodando");
-}); */
-
+});
+/* 
 http
   .createServer((req, res) => {
     res.writeHead(200, { "Content-Type": "text/plain" });
-    res.redirect("/views");
+    res.end("Hello Node");
   })
   .listen(PORT);
+
+console.log("Servidor rodando na porta: " + PORT); */

@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Category = require("./Category");
 const slugify = require("slugify");
-const { application } = require("express");
 const authenticateUser = require("../middlewares/authenticateUser");
 
 router.get("/admin/categories/new", (req, res) => {
