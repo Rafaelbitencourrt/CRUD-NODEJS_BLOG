@@ -127,15 +127,29 @@ app.use("/", articlesController);
 app.use("/", categoriesController);
 app.use("/", userController);
 
-app.listen(PORT, () => {
+/* app.listen(PORT, () => {
   console.log("servidor rodando");
-});
-/* 
+}); */
+
+const requestListener = function (req, res) {
+  fs.readFile(__dirname + "/index.html")
+    .then((contents) => {
+      res.setHeader("Content-Type", "text/html");
+      res.writeHead(200);
+      res.end(contents);
+    })
+    .catch((err) => {
+      res.writeHead(500);
+      res.end(err);
+      return;
+    });
+};
+
 http
   .createServer((req, res) => {
     res.writeHead(200, { "Content-Type": "text/plain" });
-    res.end("Hello Node");
+    res.end("Hello");
   })
   .listen(PORT);
 
-console.log("Servidor rodando na porta: " + PORT); */
+console.log("Servidor rodando na porta: " + PORT);
