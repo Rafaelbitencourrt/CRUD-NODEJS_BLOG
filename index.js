@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const connection = require("./database/database");
+var http = require("http");
 const PORT = process.env.PORT || 8080;
 const session = require("express-session");
 
@@ -126,6 +127,13 @@ app.use("/", articlesController);
 app.use("/", categoriesController);
 app.use("/", userController);
 
-app.listen(PORT, () => {
+/* app.listen(PORT, () => {
   console.log("servidor rodando");
-});
+}); */
+
+http
+  .createServer((req, res) => {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.redirect("/views");
+  })
+  .listen(PORT);
