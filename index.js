@@ -1,9 +1,7 @@
 const express = require("express");
 const app = express();
 const connection = require("./database/database");
-var http = require("http");
-var host = process.env.PORT;
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const session = require("express-session");
 
 const articlesController = require("./artigo/ArticlesController");
