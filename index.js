@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const connection = require("./database/database");
 var http = require("http");
-const PORT = process.env.PORT || 8080;
+var host = process.env.PORT;
+const PORT = 8080;
 const session = require("express-session");
 
 const articlesController = require("./artigo/ArticlesController");
@@ -12,6 +13,7 @@ const userController = require("./users/UsersController");
 const Article = require("./artigo/Article");
 const Category = require("./categories/Category");
 const User = require("./users/User");
+const { CLIENT_RENEG_LIMIT } = require("tls");
 
 //VIEW ENGINE
 app.set("view engine", "ejs");
@@ -127,29 +129,6 @@ app.use("/", articlesController);
 app.use("/", categoriesController);
 app.use("/", userController);
 
-/* app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log("servidor rodando");
-}); */
-
-const requestListener = function (req, res) {
-  fs.readFile(__dirname + "/index.html")
-    .then((contents) => {
-      res.setHeader("Content-Type", "text/html");
-      res.writeHead(200);
-      res.end(contents);
-    })
-    .catch((err) => {
-      res.writeHead(500);
-      res.end(err);
-      return;
-    });
-};
-
-http
-  .createServer((req, res) => {
-    res.writeHead(200, { "Content-Type": "text/plain" });
-    res.end("Hello");
-  })
-  .listen(PORT);
-
-console.log("Servidor rodando na porta: " + PORT);
+});
