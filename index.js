@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const connection = require("./database/database");
-const PORT = process.env.PORT || 21032;
+const PORT = process.env.PORT || 8080;
 const session = require("express-session");
 
 const articlesController = require("./artigo/ArticlesController");
@@ -11,7 +11,6 @@ const userController = require("./users/UsersController");
 const Article = require("./artigo/Article");
 const Category = require("./categories/Category");
 const User = require("./users/User");
-const { CLIENT_RENEG_LIMIT } = require("tls");
 
 //VIEW ENGINE
 app.set("view engine", "ejs");
