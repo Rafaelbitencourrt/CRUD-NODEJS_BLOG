@@ -3,11 +3,9 @@ const app = express();
 const connection = require("./database/database");
 const PORT = process.env.PORT || 21032;
 const session = require("express-session");
-
 const articlesController = require("./artigo/ArticlesController");
 const categoriesController = require("./categories/CategoriesController");
 const userController = require("./users/UsersController");
-
 const Article = require("./artigo/Article");
 const Category = require("./categories/Category");
 const User = require("./users/User");
